@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+httpGet("https://www.freemaptools.com/find-zip-codes-inside-radius.htm");
+
+function httpGet(theUrl)
+{
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            createDiv(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("POST", theUrl, false);
+    xmlhttp.send();    
+}
+function createDiv(responsetext)
+{
+    var _body = document.getElementsByTagName('body')[0];
+    var _div = document.createElement('div');
+    _div.innerHTML = responsetext;
+    _body.appendChild(_div);
+}
+
+</script>
+</html>
+
